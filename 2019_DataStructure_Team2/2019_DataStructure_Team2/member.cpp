@@ -143,6 +143,19 @@ void pt()
 	}
 
 }
+
+void Q11(member* table) {
+	int i;
+
+	std::locale::global(std::locale("korean"));
+	printf("<PT 받는 회원 중 라커를 이용하지 않는 회원>\n");
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	for (i = 0; i < 350; i++) {
+		if ((strcmp(table[i].pt_enroll, "Y") == 0) && (strcmp(table[i].locker, "-") == 0)) {
+			printf("%d %s PT: %s Locker: %s \n", table[i].ID, table[i].name, table[i].pt_enroll, table[i].locker);
+		}
+	}
+}
 void Q12()
 {
 	double a = (double)(pt_age[2][0] + pt_age[2][1]) / (pt_age[0][0] + pt_age[0][1]);

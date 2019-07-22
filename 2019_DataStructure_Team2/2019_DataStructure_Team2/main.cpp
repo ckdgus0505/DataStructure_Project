@@ -73,7 +73,8 @@ int main()
 				table[line].BMIgoal = atof(parsing[i].c_str());
 				break;
 			case 12:
-				table[line].locker = atoi(parsing[i].c_str());
+				table[line].locker = (char*)malloc(sizeof(char) * 256);
+				strcpy(table[line].locker, parsing[i].c_str());
 				break;
 			case 13:
 				table[line].enroll_date = (char*)malloc(sizeof(char) * 256);
@@ -120,6 +121,7 @@ int main()
 	std::locale::global(std::locale("korean"));
 	Q6(10);
 	pt();
+	Q11(table);
 	Q12();
 	Q19();
 				
