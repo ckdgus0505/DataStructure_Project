@@ -6,6 +6,9 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <time.h>
+#include<algorithm>
+#include<queue>
 class member {
 public: // 18개 항목
 	int ID; // 회원번호
@@ -26,7 +29,11 @@ public: // 18개 항목
 	int pt_cnt; // 누적 PT 횟수
 	char* latest; // 가장 최근 운동일
 	char* finish; // 상품권 말소 시기
+
 };
-void loader();
-void parser();
+	void Q6(int num); // 가장 오래된 회원(num)명 만큼 출력해준다.
+void pt();
+void Q12();
+void Q19();
+
 std::vector<std::string> split(std::string str, char delimiter);
