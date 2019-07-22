@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <locale>
 #include "member.h"
+#include "trainer.h" //새로운 트레이너 헤더파일
 
 member* table;
 char buffer[1024];
@@ -98,10 +99,18 @@ int main()
 
 	/* 확인을 위한 출력*/
 
-	for (int i = 0; i < 350; i++)
+	/*for (int i = 0; i < 350; i++)
 	{
 		std::cout << table[i].name << " " << table[i].pt_cnt << ' ' << table[i].BMIfirst << std::endl;
-	}
-				
+	}*/
+
+
+	/* 여기서부터 내가 만든 코드*/
+	int t_cnt;
+	trainer arr[100];
+	t_cnt = trainer_load(arr, table, line);
+	trainer_best(arr, t_cnt);
+	trainer_check_print(arr, table, t_cnt);
+
 	return 0;
 }
