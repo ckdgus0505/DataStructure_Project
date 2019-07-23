@@ -9,6 +9,8 @@ int pt_age[8][2];
 
 int line = 0; // 회원 수
 
+void most_addr(member* list); //q4문제 해결을 위한 함수 원형 선언
+
 int main()
 {
 	std::ifstream in("info.csv");
@@ -122,6 +124,9 @@ int main()
 	pt();
 	Q12();
 	Q19();
+
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	most_addr(table); //q4 출력
 				
 	return 0;
 }
