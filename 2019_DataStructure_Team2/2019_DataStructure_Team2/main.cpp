@@ -11,11 +11,11 @@ int line = 0; // 회원 수
 
 void most_addr(member* list); //q4문제 해결을 위한 함수 원형 선언
 
-int main()
+void load()
 {
 	std::ifstream in("info.csv");
 	std::locale::global(std::locale("ko_KR.UTF-8"));
-	
+
 
 	if (in.is_open())
 	{
@@ -101,16 +101,12 @@ int main()
 	}
 
 	in.close();
+}
 
+int main()
+{
 
-	/* 확인을 위한 출력*/
-
-	//for (int i = 0; i < line; i++)
-	//{
-	//	std::cout << table[i].name << " " << table[i].enroll_date << ' ' << table[i].BMIfirst << std::endl;
-	//}
-
-
+	load();
 		/* 여기서부터 내가 만든 코드*/
 	int t_cnt;
 	trainer arr[100];
@@ -119,7 +115,6 @@ int main()
 	trainer_check_print(arr, table, t_cnt);
 
 	// 6, 12, 19 출력을 위한 코드
-	std::locale::global(std::locale("korean"));
 	Q6(10);
 	pt();
 	Q12();

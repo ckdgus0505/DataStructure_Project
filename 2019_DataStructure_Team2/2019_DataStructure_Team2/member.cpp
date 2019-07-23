@@ -45,6 +45,13 @@ void Q6(int num)
 		min_heap.pop();
 	}
 }
+int hash_func(int tm_year, int age_year)
+{
+	int idx = (tm_year + 1900 - age_year) / 10;
+	if (idx >= 7)
+		return 7;
+	return idx;
+}
 void pt()
 {
 	memset(pt_age, 0, sizeof(pt_age));
@@ -63,85 +70,11 @@ void pt()
 			age_year += 1900;
 		else age_year += 2000;
 
-		if (strcmp(table[i].pt_enroll, "N") == 0) // PT를 안 받으면
-		{
-			if (t->tm_year + 1900 - age_year <= 19)
-			{
-				pt_age[1][0]++;
-				pt_age[0][0]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 20 && t->tm_year + 1900 - age_year <= 29)
-			{
-				pt_age[2][0]++;
-				pt_age[0][0]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 30 && t->tm_year + 1900- age_year <= 39)
-			{
-				pt_age[3][0]++;
-				pt_age[0][0]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 40 && t->tm_year + 1900 - age_year <= 49)
-			{
-				pt_age[4][0]++;
-				pt_age[0][0]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 50 && t->tm_year + 1900 - age_year <= 59)
-			{
-				pt_age[5][0]++;
-				pt_age[0][0]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 60 && t->tm_year + 1900 - age_year <= 69)
-			{
-				pt_age[6][0]++;
-				pt_age[0][0]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 70)
-			{
-				pt_age[7][0]++;
-				pt_age[0][0]++;
-			}
-		}
-		else // PT 받으면
-		{
-			if (t->tm_year + 1900 - age_year <= 19)
-			{
-				pt_age[1][1]++;
-				pt_age[0][1]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 20 && t->tm_year + 1900 - age_year <= 29)
-			{
-
-				pt_age[2][1]++;
-				pt_age[0][1]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 30 && t->tm_year + 1900 - age_year <= 39)
-			{
-				pt_age[3][1]++;
-				pt_age[0][1]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 40 && t->tm_year + 1900 - age_year <= 49)
-			{
-				pt_age[4][1]++;
-				pt_age[0][1]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 50 && t->tm_year + 1900 - age_year <= 59)
-			{
-				pt_age[5][1]++;
-				pt_age[0][1]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 60 && t->tm_year + 1900 - age_year <= 69)
-			{
-				pt_age[6][1]++;
-				pt_age[0][1]++;
-			}
-			else if (t->tm_year + 1900 - age_year >= 70)
-			{
-				pt_age[7][1]++;
-				pt_age[0][1]++;
-			}
-		}
+		int idx = hash_func(t->tm_year, age_year);
+		int pidx = (strcmp(table[i].pt_enroll, "N") == 0) ? 0 : 1;
+		pt_age[idx][pidx]++;
+		pt_age[0][pidx]++;
 	}
-
 }
 void Q12()
 {
