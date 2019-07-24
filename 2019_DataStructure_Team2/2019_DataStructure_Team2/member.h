@@ -31,5 +31,9 @@ public: // 18개 항목
 	char* finish; // 상품권 말소 시기
 
 };
+	void Q6(int num); // 가장 오래된 회원(num)명 만큼 출력해준다.
+void pt();
+void Q12();
+void Q19();
 
 std::vector<std::string> split(std::string str, char delimiter);

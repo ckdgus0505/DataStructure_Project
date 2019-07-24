@@ -126,13 +126,11 @@
     <ClCompile Include="address.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="member.cpp" />
-    <ClCompile Include="pt_table.cpp" />
     <ClCompile Include="trainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="address.h" />
     <ClInclude Include="member.h" />
-    <ClInclude Include="pt_table.h" />
     <ClInclude Include="trainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
