@@ -9,6 +9,7 @@
 #include <time.h>
 #include<algorithm>
 #include<queue>
+
 class member {
 public: // 18개 항목
 	int ID; // 회원번호
@@ -18,12 +19,12 @@ public: // 18개 항목
 	char* recommender; // 추천인
 	char* birthday; //생년월일
 	char* ticket; // 구매상품
-	char*  pt_enroll; // pt등록여부
+	char* pt_enroll; // pt등록여부
 	char* trainer; // 담당 트레이너
 	double BMIfirst; // 첫 BMI지수
 	double BMInow; // 현재 BMI지수
 	double BMIgoal; // 목표 BMI지수
-	char * locker; // 사용 라커
+	char* locker; // 사용 라커
 	char* enroll_date; // 최초 등록일
 	int exer_cnt; // 누적 운동
 	int pt_cnt; // 누적 PT 횟수
@@ -31,10 +32,16 @@ public: // 18개 항목
 	char* finish; // 상품권 말소 시기
 
 };
-	void Q6(int num); // 가장 오래된 회원(num)명 만큼 출력해준다.
-void pt();
-void Q11(member* table, member * arr);
-void Q12();
-void Q19();
+
+class member_info {
+public:
+	member* list;
+	int(*pt_age)[2];
+	int n;
+	int cnt;
+	void init(int max_size);
+	void load();
+};
 
 std::vector<std::string> split(std::string str, char delimiter);
+void Q11(member_info table, member* arr);
