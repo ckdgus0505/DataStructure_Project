@@ -12,7 +12,6 @@ bool greater(enrollname& a, enrollname& b)
 void Q6(int num, member_info& table)
 {
 	std::priority_queue<enrollname, std::vector<enrollname>, std::greater<enrollname>> min_heap;
-	std::vector<enrollname> members;
 	char tmp[9];
 	member* list = table.list;
 	int cnt = table.cnt;
@@ -30,17 +29,13 @@ void Q6(int num, member_info& table)
 		min_heap.push(tmpn);
 	}
 
-	std::make_heap(members.begin(), members.end(), greater);
 	for (int i = 0; i < num; i++)
 	{
 		enrollname tmpe = min_heap.top();
-		//enrollname tmpe = members.front();
 		printf("가장 오래된 회원 %d : %d가입 ", i + 1, tmpe.first);
 		std::locale::global(std::locale("ko_KR.UTF-8"));
 		printf("%s\n", tmpe.second);
 		std::locale::global(std::locale("korean"));
-		//std::pop_heap(members.begin(), members.end());
-		//members.pop_back();
 		min_heap.pop();
 	}
 }
@@ -114,16 +109,3 @@ void Q19(member_info &table)
 	printf("#10대는 0세부터 19세까지 집계한 결과이고 70대는 70세부터 집계한 결과입니다.\n");
 }
 
-
-// 문자열을 delemeter 단위로 잘라서 vector에 순서대로 저장해주는 함수
-std::vector<std::string> split(std::string str, char delimiter) {
-	std::vector<std::string> internal;
-	std::stringstream ss(str);
-	std::string temp;
-
-	while (getline(ss, temp, delimiter)) {
-		internal.push_back(temp);
-	}
-
-	return internal;
-}

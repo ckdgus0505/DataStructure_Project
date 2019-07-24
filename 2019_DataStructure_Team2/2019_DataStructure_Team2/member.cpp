@@ -135,3 +135,17 @@ int member_info::search(char* name)
 			return i;
 	return -1;
 }
+
+
+// 문자열을 delemeter 단위로 잘라서 vector에 순서대로 저장해주는 함수
+std::vector<std::string> split(std::string str, char delimiter) {
+	std::vector<std::string> internal;
+	std::stringstream ss(str);
+	std::string temp;
+
+	while (getline(ss, temp, delimiter)) {
+		internal.push_back(temp);
+	}
+
+	return internal;
+}
