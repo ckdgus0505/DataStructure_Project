@@ -4,14 +4,14 @@
 #include "trainer.h"
 #include "pt_table.h"
 
-
+member memarr[200];
 void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
 //void most_recommender(member* list);
+
 
 int main()
 {
 	member_info table;
-	//member memarr[150];
 	table.init(1000);
 	table.load();
 
@@ -39,8 +39,9 @@ int main()
 	printf("┌─────────────────────────┐\n");
 	printf("│            Q11          │\n");
 	printf("└─────────────────────────┘\n");
-	Q11(table);
+	Q11(table, memarr);
 
+	std::locale::global(std::locale("korean"));
 	printf("┌─────────────────────────┐\n");
 	printf("│        Q12  & Q19       │\n");
 	printf("└─────────────────────────┘\n");;

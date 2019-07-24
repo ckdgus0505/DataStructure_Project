@@ -44,4 +44,4 @@ public:
 };
 
 std::vector<std::string> split(std::string str, char delimiter);
-void Q11(member_info table);
+void Q11(member_info table, member* arr);
