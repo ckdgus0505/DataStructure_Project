@@ -8,7 +8,6 @@ void member_info::init(int max_size)
 	n = max_size;
 	cnt = 0;
 	list = (member*)calloc(n, sizeof(member));
-	pt_age = (int(*)[2])malloc(sizeof(int*));
 }
 // 로드하는 함수
 void member_info::load()

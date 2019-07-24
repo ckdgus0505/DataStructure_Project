@@ -37,7 +37,7 @@ public: // 18개 항목
 class member_info {
 public:
 	member* list; // 회원 정보가 저장될 리스트
-	int(*pt_age)[2];
+	int** pt_age;
 	int n; // 최대 회원 수용 가능한 수
 	int cnt; // 회원 수
 	void init(int max_size);

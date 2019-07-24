@@ -58,8 +58,19 @@ int hash_func(int tm_year, int age_year)
 // 2행 8열짜리 배열에 0, 1 행은 pt여부, 1~7열은 연령대별 회원수, 0열은 1~7열의 합으로 되어있다.
 void pt(member_info &table)
 {
-	int pt_age[8][2];
-	memset(pt_age, 0, sizeof(pt_age));
+	int** pt_age = (int**)malloc(sizeof(int*) * 8);
+	for(int i = 0; i < 8; i++)
+	{
+		pt_age[i] = (int*)malloc(sizeof(int) * 2);
+	}
+
+	for (int i = 0; i < 8; i++)
+	{
+		memset(pt_age[i], 0, sizeof(int)*2);
+
+	}
+
+
 	time_t timer = time(NULL);
 	struct tm* t = localtime(&timer);
 	char age[5];
