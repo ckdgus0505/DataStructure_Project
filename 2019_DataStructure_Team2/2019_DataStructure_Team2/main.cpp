@@ -8,7 +8,7 @@
 member memarr[200];
 void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
 void most_recommender(member_info list);
-	member_info table;
+member_info table;
 
 atrain t_arr; // class trainer배열을 담을 클래스
 int main()
@@ -53,7 +53,7 @@ int main()
 
 	std::locale::global(std::locale("korean"));
 	printf("┌─────────────────────────┐\n");
-	printf("│        *   Q09          │\n");
+	printf("│     ****   Q09          │\n");
 	printf("└─────────────────────────┘\n");
 	std::locale::global(std::locale("ko_KR.UTF-8"));
 	most_recommender(table);
@@ -76,8 +76,6 @@ int main()
 	printf("└─────────────────────────┘\n");
 	Q19(table);
 
-	//most_recommender(table);
 
 	return 0;
 }
-void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언

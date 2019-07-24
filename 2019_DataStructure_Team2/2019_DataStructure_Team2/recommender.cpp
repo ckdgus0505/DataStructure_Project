@@ -13,19 +13,19 @@ void forest::forest_insert(int member_id, int rmember_id)
 {
 	//추천인이랑 내이름이랑 같으면 안됨
 	if (member_id == rmember_id) {
-		printf("error\n");
+		printf("data error\n");
 		return;
 	}
 	//내 밑에 나를 추천한 사람이 나오면 말이 안됨
 	int idx = forest_search(member_id);
 	if (idx != -1 && root[idx]->search(rmember_id)) {
-		printf("error\n");
+		printf("data error\n");
 		return;
 	}
 	for (int i = 0; i < ntree; i++) {
 		//루트가 아닌데 루트에 없어서 -1을 받았는데 트리 안에 있으면 에ㅔ러ㅓㅓ 동명이인?
 		if (idx == -1 && root[i]->search(member_id)) {
-			printf("error\n");
+			printf("data error\n");
 			return;
 		}
 		if (root[i]->search(rmember_id)) {
@@ -37,7 +37,9 @@ void forest::forest_insert(int member_id, int rmember_id)
 				return;
 			}
 
-			root[i]->insert(member_id, rmember_id);
+			node* temp = (node*)malloc(sizeof(node));
+			temp->set(member_id);
+			root[i]->insert_node(temp, rmember_id);
 			return;
 		}
 	}
@@ -51,7 +53,9 @@ void forest::forest_insert(int member_id, int rmember_id)
 	}
 	root[ntree] = (nptr)malloc(sizeof(node));
 	root[ntree]->init();
-	if (root[ntree]->insert(member_id, rmember_id))
+	node* temp = (node*)malloc(sizeof(node));
+	temp->set(member_id);
+	if (root[ntree]->insert_node(temp, rmember_id))
 		ntree++;
 }
 void forest::print(member_info table)
@@ -92,18 +96,18 @@ void forest::count_result(member_info table)
 	max_root_idx = root[max_root_idx]->get_member_ID();
 	printf("%s", table.list[max_root_idx].name);
 	std::locale::global(std::locale("korean"));
-	printf(" 이(가) %d명의 회원을 유입하여 헬스장에 가장 큰 기여를 함\n", max_root);
+	printf(" 회원이 %d명의 회원을 유입하여 헬스장에 가장 큰 기여를 하였습니다.\n", max_root);
 	std::locale::global(std::locale("ko_KR.UTF-8"));
 	printf("%s", table.list[max_node_idx].name);
 	std::locale::global(std::locale("korean"));
-	printf(" 이(가) %d명의 회원을 추천하여 가장 많은 회원을 추천함\n", max_node);
+	printf(" 회원이 %d명의 회원을 추천하여 가장 많은 회원을 추천하였습니다.\n", max_node);
 }
 
 void node::init()
 {
 	member_ID = -1;
 	nchild = 0;
-	childs = NULL;
+	childs = childs = (nptr*)calloc(300, sizeof(nptr));
 }
 void node::traversal(member_info table)
 {
@@ -120,6 +124,14 @@ int node::is_empty()
 }
 int node::insert_node(node* rnode, int rmember_id)
 {
+	//루트노드에 삽입
+	if (this->member_ID == -1) {
+		this->member_ID = rmember_id;
+		childs[nchild] = (nptr)malloc(sizeof(node));
+		this->childs[nchild] = rnode;
+		this->nchild++;
+		return 1;
+	}
 	if (rmember_id == this->member_ID) {
 		childs[nchild] = (nptr)malloc(sizeof(node));
 		this->childs[nchild] = rnode;
@@ -128,28 +140,6 @@ int node::insert_node(node* rnode, int rmember_id)
 	}
 	for (int i = 0; i < nchild; i++) {
 		if (childs[i]->insert_node(rnode, rmember_id))
-			return 1;
-	}
-	return 0;
-}
-int node::insert(int member_id, int rmember_id)
-{
-	//루트노드에 삽입
-	if (this->member_ID == -1) {
-		this->set(rmember_id);
-		childs[nchild] = (nptr)malloc(sizeof(node));
-		this->childs[nchild]->set(member_id);
-		this->nchild++;
-		return 1;
-	}
-	if (rmember_id == this->member_ID) {
-		childs[nchild] = (nptr)malloc(sizeof(node));
-		this->childs[nchild]->set(member_id);
-		this->nchild++;
-		return 1;
-	}
-	for (int i = 0; i < nchild; i++) {
-		if (childs[i]->insert(member_id, rmember_id))
 			return 1;
 	}
 	return 0;
@@ -214,6 +204,5 @@ void most_recommender(member_info table)
 		if (rm != -1)
 			forest.forest_insert(mm, rm);
 	}
-	forest.print(table);
 	forest.count_result(table);
 }
