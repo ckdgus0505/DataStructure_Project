@@ -74,7 +74,8 @@ void member_info::load()
 				list[cnt].BMIgoal = atof(parsing[i].c_str());
 				break;
 			case 12:
-				list[cnt].locker = atoi(parsing[i].c_str());
+				list[cnt].locker = (char*)malloc(sizeof(char) * 256);
+				strcpy(list[cnt].locker, parsing[i].c_str());
 				break;
 			case 13:
 				list[cnt].enroll_date = (char*)malloc(sizeof(char) * 256);
@@ -99,4 +100,20 @@ void member_info::load()
 		cnt++;
 	}
 	in.close();
+}
+
+void Q11(member_info table) {
+	int i;
+
+	std::locale::global(std::locale("korean"));
+	printf("<PT 받는 회원 중 라커를 이용하지 않는 회원>\n");
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	for (i = 0; i < table.cnt; i++) { //인자로 넘겨받은 배열을 하나씩 확인하면서
+		if ((strcmp(table.list[i].pt_enroll, "Y") == 0) && (strcmp(table.list[i].locker, "-") == 0)) { //PT등록이 Y이면서 라커를 사용하지 않는 회원 출력
+			{
+				printf("%d %s PT: %s Locker: %s \n", table.list[i].ID, table.list[i].name, table.list[i].pt_enroll, table.list[i].locker);
+			}
+		}
+	}
+
 }

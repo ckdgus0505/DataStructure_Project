@@ -11,6 +11,7 @@ void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
 int main()
 {
 	member_info table;
+	//member memarr[150];
 	table.init(1000);
 	table.load();
 
@@ -33,6 +34,13 @@ int main()
 	printf("│            Q06          │\n");
 	printf("└─────────────────────────┘\n");
 	Q6(10, table);
+
+
+	printf("┌─────────────────────────┐\n");
+	printf("│            Q11          │\n");
+	printf("└─────────────────────────┘\n");
+	Q11(table);
+
 	printf("┌─────────────────────────┐\n");
 	printf("│        Q12  & Q19       │\n");
 	printf("└─────────────────────────┘\n");;

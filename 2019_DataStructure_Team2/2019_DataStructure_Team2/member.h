@@ -24,7 +24,7 @@ public: // 18개 항목
 	double BMIfirst; // 첫 BMI지수
 	double BMInow; // 현재 BMI지수
 	double BMIgoal; // 목표 BMI지수
-	int locker; // 사용 라커
+	char* locker; // 사용 라커
 	char* enroll_date; // 최초 등록일
 	int exer_cnt; // 누적 운동
 	int pt_cnt; // 누적 PT 횟수
@@ -44,3 +44,4 @@ public:
 };
 
 std::vector<std::string> split(std::string str, char delimiter);
+void Q11(member_info table);

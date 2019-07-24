@@ -93,6 +93,7 @@ void pt(member_info table)
 			min = i;
 	}
 	printf("PT를 가장 많이 이용하는 연령대는 %d0 대이고, 가장 적게 이용하는 연령대는 %d0 대입니다.\n", max, min);
+	printf("#10대는 0세부터 19세까지 집계한 결과이고 70대는 70세부터 집계한 결과압입다.\n");
 }
 std::vector<std::string> split(std::string str, char delimiter) {
 	std::vector<std::string> internal;
