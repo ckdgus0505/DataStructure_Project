@@ -33,7 +33,7 @@ public: // 18개 항목
 };
 	void Q6(int num); // 가장 오래된 회원(num)명 만큼 출력해준다.
 void pt();
-void Q11(member* table);
+void Q11(member* table, member * arr);
 void Q12();
 void Q19();
 

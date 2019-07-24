@@ -144,17 +144,30 @@ void pt()
 
 }
 
-void Q11(member* table) {
-	int i;
+void Q11(member* table, member * arr) {
+	int i,j=0;
 
 	std::locale::global(std::locale("korean"));
 	printf("<PT 받는 회원 중 라커를 이용하지 않는 회원>\n");
 	std::locale::global(std::locale("ko_KR.UTF-8"));
-	for (i = 0; i < 350; i++) {
-		if ((strcmp(table[i].pt_enroll, "Y") == 0) && (strcmp(table[i].locker, "-") == 0)) {
-			printf("%d %s PT: %s Locker: %s \n", table[i].ID, table[i].name, table[i].pt_enroll, table[i].locker);
+	for (i = 0; i < 350; i++) { //인자로 넘겨받은 배열을 하나씩 확인하면서
+		if ((strcmp(table[i].pt_enroll, "Y") == 0) && (strcmp(table[i].locker, "-") == 0)) { //PT등록이 Y이면서 라커를 사용하지 않는 회원정보 중 ID, 이름, PT 등록여부, 라커를 새로운 배열에 저장
+			//printf("%d %s PT: %s Locker: %s \n", table[i].ID, table[i].name, table[i].pt_enroll, table[i].locker);
+			arr[j].ID = table[i].ID;
+			arr[j].name = (char*)malloc(sizeof(char) * 256);
+			strcpy(arr[j].name, table[i].name);
+			arr[j].pt_enroll = (char*)malloc(sizeof(char) * 256);
+			strcpy(arr[j].pt_enroll, table[i].pt_enroll);
+			arr[j].locker = (char*)malloc(sizeof(char) * 256);
+			strcpy(arr[j].locker, table[i].locker);
+			j++;
 		}
 	}
+
+	for (i = 0; i < j; i++) { //새로운 배열에 저장된 회원정보 출력
+		printf("%d %s %s %s\n", arr[i].ID,arr[i].name,arr[i].pt_enroll,arr[i].locker);
+	}
+
 }
 void Q12()
 {

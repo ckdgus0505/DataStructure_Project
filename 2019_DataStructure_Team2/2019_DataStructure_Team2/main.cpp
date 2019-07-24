@@ -4,6 +4,7 @@
 #include "trainer.h"
 
 member* table;
+member memarr[200];
 char buffer[1024];
 int pt_age[8][2];
 
@@ -121,7 +122,7 @@ int main()
 	std::locale::global(std::locale("korean"));
 	Q6(10);
 	pt();
-	Q11(table);
+	Q11(table, memarr);
 	Q12();
 	Q19();
 				
