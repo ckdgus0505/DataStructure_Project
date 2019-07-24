@@ -21,10 +21,10 @@
     <ClCompile Include="member.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="trainer.cpp">
+    <ClCompile Include="address.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="address.cpp">
+    <ClCompile Include="trainer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

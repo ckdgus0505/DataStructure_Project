@@ -107,12 +107,18 @@ int main()
 {
 
 	load();
-		/* 여기서부터 내가 만든 코드*/
-	int t_cnt;
-	trainer arr[100];
-	t_cnt = trainer_load(arr, table, line);
-	trainer_best(arr, t_cnt);
-	trainer_check_print(arr, table, t_cnt);
+		/* 최영우 시작 */
+	atrain t_arr; // class trainer배열을 담을 클래스
+	t_arr.init(); // class trainer 100칸을 만듦
+
+	t_arr.loading(line); // 배열을 읽으며 트레이너 생성
+
+	t_arr.best1(); // 가장 회원을 많이 갖은 트레이너는 누구인가
+
+	t_arr.best2(); // 포인트가 가장 높은 트레이너느 누구인가
+
+	//t_arr.deb(); // (디버그용) 각각의 트레이는 몇 포인트를 갖고 있는가?
+	/* 최영우 끝 */
 
 	// 6, 12, 19 출력을 위한 코드
 	Q6(10);
