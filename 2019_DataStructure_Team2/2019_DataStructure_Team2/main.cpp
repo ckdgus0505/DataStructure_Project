@@ -2,7 +2,6 @@
 #include <locale>
 #include "member.h"
 #include "pt_table.h"
-#include "fore.h"
 
 member memarr[200];
 void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
