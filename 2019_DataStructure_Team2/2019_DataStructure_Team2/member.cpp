@@ -2,7 +2,7 @@
 #include "member.h"
 typedef std::pair<int, char*> enrollname;
 
-
+// 초기화 하는 함수 //
 void member_info::init(int max_size)
 {
 	n = max_size;
@@ -10,6 +10,7 @@ void member_info::init(int max_size)
 	list = (member*)calloc(n, sizeof(member));
 	pt_age = (int(*)[2])malloc(sizeof(int*));
 }
+// 로드하는 함수
 void member_info::load()
 {
 	std::ifstream in("info.csv");
@@ -24,8 +25,8 @@ void member_info::load()
 	list = new member[1000];
 	while (getline(in, str))
 	{
-		std::vector<std::string> parsing = split(str, ',');
-		for (int i = 0; i < 18; i++)
+		std::vector<std::string> parsing = split(str, ','); // 문자열을 . 단위로 잘라서 parsing이라는 vector에 저장한다.
+		for (int i = 0; i < 18; i++) // index에 맞는 정보를 저장
 		{
 			switch (i)
 			{
@@ -127,6 +128,7 @@ void Q11(member_info table, member* arr) {
 
 }
 
+// 회원의 이름을 받아서 list의 번호(index)를 반환하는 함수
 int member_info::search(char* name)
 {
 	for (int i = 0; i < cnt; i++)

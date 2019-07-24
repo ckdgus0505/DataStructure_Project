@@ -36,14 +36,14 @@ public: // 18개 항목
 
 class member_info {
 public:
-	member* list;
+	member* list; // 회원 정보가 저장될 리스트
 	int(*pt_age)[2];
-	int n;
-	int cnt;
+	int n; // 최대 회원 수용 가능한 수
+	int cnt; // 회원 수
 	void init(int max_size);
 	void load();
 	int search(char* name);
 };
-
+// delemeter 단위로 문자열 자르는 함수
 std::vector<std::string> split(std::string str, char delimiter);
 void Q11(member_info table, member* arr);
