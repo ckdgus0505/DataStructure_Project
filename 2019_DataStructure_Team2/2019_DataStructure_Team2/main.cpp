@@ -3,31 +3,54 @@
 #include "member.h"
 #include "trainer.h"
 #include "pt_table.h"
+<<<<<<< Updated upstream
+=======
+#include "trainer.h"
+>>>>>>> Stashed changes
 
 member memarr[200];
 void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
 //void most_recommender(member* list);
 
-
+	member_info table;
+atrain t_arr; // class trainer배열을 담을 클래스
 int main()
 {
-	member_info table;
 	table.init(1000);
 	table.load();
 
-
-	/* 여기서부터 내가 만든 코드*/
+	/* 최영우 시작 */
 	std::locale::global(std::locale("korean"));
 	printf("┌─────────────────────────┐\n");
 	printf("│            Q01          │\n");
 	printf("└─────────────────────────┘\n");
 	std::locale::global(std::locale("ko_KR.UTF-8"));
+<<<<<<< Updated upstream
 	int t_cnt;
 	trainer arr[100];
 	t_cnt = trainer_load(arr, table);
 	trainer_best(arr, t_cnt);
 	trainer_check_print(arr, t_cnt);
+=======
+	t_arr.init(); // class trainer 100칸을 만듦
+	t_arr.loading(table.cnt); // 배열을 읽으며 트레이너 생성
+	t_arr.best1(); // 가장 회원을 많이 갖은 트레이너는 누구인가
 
+	std::locale::global(std::locale("korean"));
+	printf("┌─────────────────────────┐\n");
+	printf("│            Q02          │\n");
+	printf("└─────────────────────────┘\n");
+	t_arr.best2(); // 포인트가 가장 높은 트레이너느 누구인가
+//t_arr.deb(); // (디버그용) 각각의 트레이는 몇 포인트를 갖고 있는가?
+   /* 최영우 끝 */
+>>>>>>> Stashed changes
+
+	std::locale::global(std::locale("korean"));
+	printf("┌─────────────────────────┐\n");
+	printf("│            Q04          │\n");
+	printf("└─────────────────────────┘\n");
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	most_addr(table); //q4 출력
 	// 6, 12, 19 출력을 위한 코드
 	std::locale::global(std::locale("korean"));
 	printf("┌─────────────────────────┐\n");
@@ -47,12 +70,6 @@ int main()
 	printf("└─────────────────────────┘\n");;
 	pt(table);
 
-	std::locale::global(std::locale("korean"));
-	printf("┌─────────────────────────┐\n");
-	printf("│            Q04          │\n");
-	printf("└─────────────────────────┘\n");
-	std::locale::global(std::locale("ko_KR.UTF-8"));
-	most_addr(table); //q4 출력
 
 	//most_recommender(table);
 

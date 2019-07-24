@@ -1,0 +1,109 @@
+#include"member.h"
+#include<string.h>
+#include"trainer.h"
+
+extern member_info table;
+
+void atrain::init(void) {
+	t_cnt = 0;
+	arr = new trainer[100];
+}
+
+
+int atrain::loading(int line) {
+	int i = 0;
+	int m;
+	for (int j = 0; j < line; j++) {
+		if (strcmp(table.list[j].trainer, "-") == 0) {
+			continue;
+		}
+		if (i == 0) {
+			arr[i].t_name = table.list[j].trainer;
+			arr[i].m_cnt = 0;
+			arr[i].m_arr = (int*)calloc(100, sizeof(int));
+			arr[i].m_arr[arr[i].m_cnt] = j;
+			arr[i].m_cnt++;
+			i++;
+			t_cnt++;
+			continue;
+		}
+		m = i;
+		int k;
+		for (k = 0; k < m; k++) {
+			if (strcmp(arr[k].t_name, table.list[j].trainer) == 0) {
+				arr[k].m_arr[arr[k].m_cnt] = j;
+				arr[k].m_cnt++;
+				break;
+			}
+		}
+		if (k == m) {
+			arr[i].t_name = table.list[j].trainer;
+			arr[i].m_cnt = 0;
+			arr[i].m_arr = (int*)calloc(100, sizeof(int));
+			arr[i].m_arr[arr[i].m_cnt] = j;
+			arr[i].m_cnt++;
+			i++;
+			t_cnt++;
+		}
+
+	}
+	return i;
+}
+
+void atrain::best1(void) {
+	int k = 0;
+	for (int i = 0; i < t_cnt; i++) if (k < arr[i].m_cnt) k = arr[i].m_cnt;
+	std::locale::global(std::locale("korean"));
+	std::cout << "가장 많은 회원을 확보한 트레이너는!" << '\n';
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	for (int i = 0; i < t_cnt; i++) if (arr[i].m_cnt == k) std::cout << arr[i].t_name << '\n';
+}
+
+void atrain::point_update(void) {
+	for (int i = 0; i < t_cnt; i++) {
+		double point = 0;
+		for (int j = 0; j < arr[i].m_cnt; j++) {
+			point += count(arr[i].m_arr[j]);
+		}
+		arr[i].t_point = point / arr[i].m_cnt * 100 / arr[i].m_cnt;
+	}
+}
+
+double count(int i) {
+	double first = table.list[i].BMIfirst, now = table.list[i].BMInow, goal = table.list[i].BMIgoal;
+
+	double head = (first - now) * (first - now);
+	double tail = (first > goal) ? first - goal : goal - first;
+
+	if (first > goal) {
+		if (now > first) return -(head / tail);
+		else return head / tail;
+	}
+	if (first < goal) {
+		if (now < first) return -(head / tail);
+		else return head / tail;
+	}
+}
+
+void atrain::best2(void) {
+	point_update();
+	int result = 0;
+	double result2 = 0;
+	for (int i = 0; i < t_cnt; i++) {
+		if (result2 < arr[i].t_point) {
+			result2 = arr[i].t_point;
+			result = i;
+		}
+	}
+	std::locale::global(std::locale("korean"));
+	std::cout << "가장 성과가 좋은 트레이너는!" << '\n';
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	std::cout << arr[result].t_name << ',' << result2 << '\n';
+	return;
+}
+
+void atrain::deb(void) {
+	for (int i = 0; i < t_cnt; i++) {
+		std::cout << arr[i].t_name << ',' << ' ' << arr[i].t_point << '\n';
+	}
+}
