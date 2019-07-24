@@ -152,7 +152,6 @@ void Q11(member* table, member * arr) {
 	std::locale::global(std::locale("ko_KR.UTF-8"));
 	for (i = 0; i < 350; i++) { //인자로 넘겨받은 배열을 하나씩 확인하면서
 		if ((strcmp(table[i].pt_enroll, "Y") == 0) && (strcmp(table[i].locker, "-") == 0)) { //PT등록이 Y이면서 라커를 사용하지 않는 회원정보 중 ID, 이름, PT 등록여부, 라커를 새로운 배열에 저장
-			//printf("%d %s PT: %s Locker: %s \n", table[i].ID, table[i].name, table[i].pt_enroll, table[i].locker);
 			arr[j].ID = table[i].ID;
 			arr[j].name = (char*)malloc(sizeof(char) * 256);
 			strcpy(arr[j].name, table[i].name);
@@ -164,7 +163,7 @@ void Q11(member* table, member * arr) {
 		}
 	}
 
-	for (i = 0; i < j; i++) { //새로운 배열에 저장된 회원정보 출력
+	for (i = 0; i < j; i++) { //저장된 회원정보 출력
 		printf("%d %s %s %s\n", arr[i].ID,arr[i].name,arr[i].pt_enroll,arr[i].locker);
 	}
 
