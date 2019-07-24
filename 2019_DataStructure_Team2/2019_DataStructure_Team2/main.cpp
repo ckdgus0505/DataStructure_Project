@@ -16,9 +16,11 @@ int main()
 
 
 	/* 여기서부터 내가 만든 코드*/
+	std::locale::global(std::locale("korean"));
 	printf("┌─────────────────────────┐\n");
 	printf("│            Q01          │\n");
 	printf("└─────────────────────────┘\n");
+	std::locale::global(std::locale("ko_KR.UTF-8"));
 	int t_cnt;
 	trainer arr[100];
 	t_cnt = trainer_load(arr, table);
@@ -32,15 +34,17 @@ int main()
 	printf("└─────────────────────────┘\n");
 	Q6(10, table);
 	printf("┌─────────────────────────┐\n");
-	printf("│            Q12          │\n");
+	printf("│        Q12  & Q19       │\n");
 	printf("└─────────────────────────┘\n");;
 	pt(table);
 
-	std::locale::global(std::locale("ko_KR.UTF-8"));
+	std::locale::global(std::locale("korean"));
 	printf("┌─────────────────────────┐\n");
 	printf("│            Q04          │\n");
 	printf("└─────────────────────────┘\n");
+	std::locale::global(std::locale("ko_KR.UTF-8"));
 	most_addr(table); //q4 출력
+
 	//most_recommender(table);
 
 	return 0;
