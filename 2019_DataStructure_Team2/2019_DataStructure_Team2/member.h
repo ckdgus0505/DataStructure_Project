@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -41,6 +42,7 @@ public:
 	int cnt;
 	void init(int max_size);
 	void load();
+	int search(char* name);
 };
 
 std::vector<std::string> split(std::string str, char delimiter);

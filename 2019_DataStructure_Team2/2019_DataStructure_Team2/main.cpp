@@ -2,11 +2,12 @@
 #include <locale>
 #include "member.h"
 #include "pt_table.h"
+#include "forest.h"
 #include "trainer.h"
 
 member memarr[200];
 void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
-//void most_recommender(member* list);
+void most_recommender(member_info list);
 	member_info table;
 
 atrain t_arr; // class trainer배열을 담을 클래스
@@ -47,6 +48,13 @@ int main()
 	printf("│        *   Q06          │\n");
 	printf("└─────────────────────────┘\n");
 	Q6(10, table);
+
+
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	printf("┌─────────────────────────┐\n");
+	printf("│        *   Q09          │\n");
+	printf("└─────────────────────────┘\n");
+	most_recommender(table);
 
 	std::locale::global(std::locale("ko_KR.UTF-8"));
 	printf("┌─────────────────────────┐\n");

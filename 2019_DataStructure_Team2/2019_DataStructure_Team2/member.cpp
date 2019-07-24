@@ -126,3 +126,11 @@ void Q11(member_info table, member* arr) {
 	}
 
 }
+
+int member_info::search(char* name)
+{
+	for (int i = 0; i < cnt; i++)
+		if (strcmp(list[i].name, name) == 0)
+			return i;
+	return -1;
+}

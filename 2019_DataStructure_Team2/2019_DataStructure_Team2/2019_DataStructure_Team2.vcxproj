@@ -127,10 +127,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="member.cpp" />
     <ClCompile Include="pt_table.cpp" />
+    <ClCompile Include="recommender.cpp" />
     <ClCompile Include="trainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="address.h" />
+    <ClInclude Include="forest.h" />
     <ClInclude Include="member.h" />
     <ClInclude Include="pt_table.h" />
     <ClInclude Include="trainer.h" />
