@@ -1,8 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <locale>
 #include "member.h"
-#include "trainer.h"
 #include "pt_table.h"
+#include "fore.h"
 
 member memarr[200];
 void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
@@ -22,11 +22,6 @@ int main()
 	printf("│            Q01          │\n");
 	printf("└─────────────────────────┘\n");
 	std::locale::global(std::locale("ko_KR.UTF-8"));
-	int t_cnt;
-	trainer arr[100];
-	t_cnt = trainer_load(arr, table);
-	trainer_best(arr, t_cnt);
-	trainer_check_print(arr, t_cnt);
 
 	// 6, 12, 19 출력을 위한 코드
 	std::locale::global(std::locale("korean"));
