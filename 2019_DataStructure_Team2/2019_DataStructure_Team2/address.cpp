@@ -11,7 +11,6 @@ void most_addr(member_info table)
 	for (int i = 0; i < table.cnt; i++)
 		address.insert(table.list[i].addr);
 	address.sort();
-	address.print();
 	address.result();
 }
 
@@ -61,6 +60,11 @@ void address::print()
 }
 void address::result()
 {
-	printf("%s has the largest number of members with %d.\n%s has the fewest number of members with %d.\n",
-		addr[0].name, addr[0].n_mem, addr[cnt - 1].name, addr[cnt - 1].n_mem);
+	printf("%s", addr[0].name);
+	std::locale::global(std::locale("korean"));
+	printf("이 %d명으로 가장 많은 회원이 거주하고 있습니다.\n", addr[0].n_mem);
+	std::locale::global(std::locale("ko_KR.UTF-8"));
+	printf("%s", addr[cnt - 1].name);
+	std::locale::global(std::locale("korean"));
+	printf("이 %d명으로 가장 적은 회원이 거주하고 있습니다.\n", addr[cnt - 1].n_mem);
 }

@@ -11,7 +11,6 @@ public:
 	void init();
 	void traversal(member_info table);
 	int is_empty();
-	int insert(int member_id, int rmember_id);
 	int insert_node(node* rnode, int rmember_id);
 	void set(int member_id);
 	int search(int member_id);
