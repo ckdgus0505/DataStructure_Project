@@ -1,4 +1,5 @@
-#pragma once
+#include <stdio.h>
+#include <stdlib.h>
 #include "member.h"
 
 
@@ -11,10 +12,13 @@ public:
 	void traversal(member_info table);
 	int is_empty();
 	int insert(int member_id, int rmember_id);
-	void remove(int member_id);
+	int insert_node(node* rnode, int rmember_id);
 	void set(int member_id);
 	int search(int member_id);
 	int get_member_ID();
+	int count();
+	int max_child();
+	int find_max_idx(int idx);
 };
 
 typedef node* nptr;
@@ -29,4 +33,5 @@ public:
 	void forest_insert(int member_id, int rmember_id);
 	int forest_search(int member_id);
 	void remove(int idx);
+	void count_result(member_info table);
 };
