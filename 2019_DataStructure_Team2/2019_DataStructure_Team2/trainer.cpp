@@ -1,10 +1,11 @@
 #include"member.h"
 #include"trainer.h"
 
-int trainer_load(trainer* arr, member* brr, int line) {
+int trainer_load(trainer* arr, member_info table) {
 	int i = 0;
 	int m;
-	for (int j = 0; j < line; j++) {
+	member* brr = table.list;
+	for (int j = 0; j < table.cnt; j++) {
 		if (strcmp(brr[j].trainer, "-") == 0) {
 			continue;
 		}
@@ -26,7 +27,7 @@ int trainer_load(trainer* arr, member* brr, int line) {
 				break;
 			}
 		}
-		if(k == m) {
+		if (k == m) {
 			arr[i].t_name = brr[j].trainer;
 			arr[i].m_cnt = 0;
 			arr[i].m_arr = (int*)calloc(100, sizeof(int));
@@ -34,7 +35,7 @@ int trainer_load(trainer* arr, member* brr, int line) {
 			arr[i].m_cnt++;
 			i++;
 		}
-			
+
 	}
 	return i;
 }
@@ -47,7 +48,7 @@ void trainer_best(trainer* arr, int cnt) {
 	for (int i = 0; i < cnt; i++) if (arr[i].m_cnt == k) std::cout << arr[i].t_name << '\n';
 }
 
-void trainer_check_print(trainer* arr,member *table, int cnt) {
+void trainer_check_print(trainer * arr, int cnt) {
 	for (int i = 0; i < cnt; i++) {
 		std::cout << arr[i].t_name << '\n';
 		for (int j = 0; j < arr[i].m_cnt; j++) std::cout << arr[i].m_arr[j] << ' ';

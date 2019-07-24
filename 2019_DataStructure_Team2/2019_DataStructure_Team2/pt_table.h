@@ -1,6 +1,4 @@
 // Q6, Q12, Q19를 해결하기 위한 함수
 
-void Q6(int num); // 가장 오래된 회원(num)명 만큼 출력해준다.
-void pt(); // 회원 table에 있는 모든 회원을 순차탐색 하여 pt 받은 사람을 연령대별로 pt_age 배열에 저장해준다.
-void Q12(); // pt_age 배열을 이용하여 회원중 20대의 비율을 출력해준다.
-void Q19(); // pt_age 배열을 이용하여 pt를 받는 가장 많은 또는 적은 연령대를 출력해준다.
+void Q6(int num, member_info table); // 가장 오래된 회원(num)명 만큼 출력해준다.
+void pt(member_info table);

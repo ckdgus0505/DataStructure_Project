@@ -4,13 +4,12 @@
 #include "member.h"
 #pragma warning(disable : 4996)
 
-extern int line;
-void most_addr(member* list)
+void most_addr(member_info table)
 {
 	address address;
 	address.init(1000);
-	for (int i = 0; i < line; i++)
-		address.insert(list[i].addr);
+	for (int i = 0; i < table.cnt; i++)
+		address.insert(table.list[i].addr);
 	address.sort();
 	address.print();
 	address.result();
@@ -39,7 +38,7 @@ void address::insert(char* name)
 	}
 	addr[cnt++].set(name);
 }
-void swap(element& a, element& b) {
+void swap(element & a, element & b) {
 	element x;
 	x = a;
 	a = b;
@@ -62,11 +61,6 @@ void address::print()
 }
 void address::result()
 {
-	printf("%s", addr[0].name);
-	std::locale::global(std::locale("korean"));
-	printf("이 %d명으로 가장 많은 회원이 거주하고 있습니다.\n", addr[0].n_mem);
-	std::locale::global(std::locale("ko_KR.UTF-8"));
-	printf("%s", addr[cnt-1].name);
-	std::locale::global(std::locale("korean"));
-	printf("이 %d명으로 가장 적은 회원이 거주하고 있습니다.\n", addr[cnt - 1].n_mem);
+	printf("%s has the largest number of members with %d.\n%s has the fewest number of members with %d.\n",
+		addr[0].name, addr[0].n_mem, addr[cnt - 1].name, addr[cnt - 1].n_mem);
 }
