@@ -53,7 +53,7 @@ int hash_func(int tm_year, int age_year)
 		return 7;
 	else return idx;
 }
-void pt(member_info table)
+void pt(member_info &table)
 {
 	int pt_age[8][2];
 	memset(pt_age, 0, sizeof(pt_age));
@@ -79,11 +79,31 @@ void pt(member_info table)
 	}
 	table.pt_age = pt_age;
 
-	//Q2
+	//Q12
+//	double a = (double)(table.pt_age[2][0] + table.pt_age[2][1]) / (table.pt_age[0][0] + table.pt_age[0][1]);
+//	printf("회원 중에서 20대의 비율은 %d%% 입니다.\n", int(a * 100));
+//
+//	//Q19
+//	int max = 1, min = 1;
+//	for (int i = 1; i <= 7; i++)
+//	{
+//		if (table.pt_age[max][1] < table.pt_age[i][1])
+//			max = i;
+//		else if (table.pt_age[min][1] > table.pt_age[i][1])
+//			min = i;
+//	}
+//	printf("PT를 가장 많이 이용하는 연령대는 %d0 대이고, 가장 적게 이용하는 연령대는 %d0 대입니다.\n", max, min);
+//	printf("#10대는 0세부터 19세까지 집계한 결과이고 70대는 70세부터 집계한 결과입니다.\n");
+}
+
+void Q12(member_info &table)
+{
 	double a = (double)(table.pt_age[2][0] + table.pt_age[2][1]) / (table.pt_age[0][0] + table.pt_age[0][1]);
 	printf("회원 중에서 20대의 비율은 %d%% 입니다.\n", int(a * 100));
+}
 
-	//Q3
+void Q19(member_info &table)
+{
 	int max = 1, min = 1;
 	for (int i = 1; i <= 7; i++)
 	{
@@ -95,6 +115,9 @@ void pt(member_info table)
 	printf("PT를 가장 많이 이용하는 연령대는 %d0 대이고, 가장 적게 이용하는 연령대는 %d0 대입니다.\n", max, min);
 	printf("#10대는 0세부터 19세까지 집계한 결과이고 70대는 70세부터 집계한 결과입니다.\n");
 }
+
+
+
 std::vector<std::string> split(std::string str, char delimiter) {
 	std::vector<std::string> internal;
 	std::stringstream ss(str);
