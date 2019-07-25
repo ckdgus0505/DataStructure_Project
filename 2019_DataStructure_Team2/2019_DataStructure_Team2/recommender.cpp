@@ -58,7 +58,7 @@ void forest::forest_insert(int member_id, int rmember_id)
 	if (root[ntree]->insert_node(temp, rmember_id))
 		ntree++;
 }
-void forest::print(member_info table)
+void forest::print(member_info& table)
 {
 	for (int i = 0; i < ntree; i++) {
 		printf("root %d : %s\n", i, table.list[root[i]->get_member_ID()].name);
@@ -78,7 +78,7 @@ void forest::remove(int idx)
 		root[j - 1] = root[j];
 	ntree--;
 }
-void forest::count_result(member_info table)
+void forest::count_result(member_info& table)
 {
 	int max_root = 0, max_root_idx = 0;
 	int max_node = 0, max_node_idx = 0;
@@ -109,7 +109,7 @@ void node::init()
 	nchild = 0;
 	childs = childs = (nptr*)calloc(300, sizeof(nptr));
 }
-void node::traversal(member_info table)
+void node::traversal(member_info& table)
 {
 	printf("[ %s ] ", table.list[member_ID].name);
 	for (int i = 0; i < nchild; i++)
@@ -193,7 +193,7 @@ int node::find_max_idx(int max_nchild)
 		childs[i]->find_max_idx(max_nchild);
 }
 
-void most_recommender(member_info table)
+void most_recommender(member_info& table)
 {
 	forest forest;
 	forest.init(table.cnt);

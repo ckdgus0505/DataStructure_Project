@@ -6,8 +6,8 @@
 #include "trainer.h"
 
 member memarr[200];
-void most_addr(member_info table); //q4문제 해결을 위한 함수 원형 선언
-void most_recommender(member_info list);
+void most_addr(member_info& table); //q4문제 해결을 위한 함수 원형 선언
+void most_recommender(member_info& list);
 member_info table;
 
 atrain t_arr; // class trainer배열을 담을 클래스

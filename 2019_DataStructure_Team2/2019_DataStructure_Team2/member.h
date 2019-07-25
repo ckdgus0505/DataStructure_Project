@@ -46,4 +46,4 @@ public:
 };
 // delemeter 단위로 문자열 자르는 함수
 std::vector<std::string> split(std::string str, char delimiter);
-void Q11(member_info table, member* arr);
+void Q11(member_info& table, member* arr);

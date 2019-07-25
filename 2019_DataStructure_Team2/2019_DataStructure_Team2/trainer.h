@@ -10,7 +10,9 @@ public:
 	void init(void);
 	int loading(int);
 	void best1(void);
+	void quicksort1(int, int, int*);
 	void best2(void);
+	void quicksort2(int, int, int*);
 	void point_update(void);
 	void deb(void);
 private:

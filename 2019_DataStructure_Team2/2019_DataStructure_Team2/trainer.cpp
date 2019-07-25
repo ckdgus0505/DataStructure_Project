@@ -50,14 +50,44 @@ int atrain::loading(int line) {
 	return i;
 }
 
+
 void atrain::best1(void) {
-	int k = 0;
-	for (int i = 0; i < t_cnt; i++) if (k < arr[i].m_cnt) k = arr[i].m_cnt;
+	int* brr = (int*)calloc(t_cnt, sizeof(int));
+	for (int i = 0; i < t_cnt; i++) brr[i] = i;
+	quicksort1(0, t_cnt - 1, brr);
+
 	std::locale::global(std::locale("korean"));
 	std::cout << "가장 많은 회원을 확보한 트레이너는!" << '\n';
 	std::locale::global(std::locale("ko_KR.UTF-8"));
-	for (int i = 0; i < t_cnt; i++) if (arr[i].m_cnt == k) std::cout << arr[i].t_name << '\n';
+	for (int i = 0; i < t_cnt; i++) printf("NO.%d : %s   count: %d\n", i + 1, arr[brr[t_cnt - 1 - i]].t_name, arr[brr[t_cnt - 1 - i]].m_cnt);
+
 }
+
+void atrain::quicksort1(int head, int tail, int* brr) {
+	if (head >= tail) return;
+	int start = head + 1;
+	int end = tail;
+	int swap;
+	while (1) {
+		while (start <= end && arr[brr[head]].m_cnt > arr[brr[start]].m_cnt) start++;
+		while (start <= end && arr[brr[head]].m_cnt < arr[brr[end]].m_cnt) end--;
+		if (start < end) {
+			swap = brr[start];
+			brr[start] = brr[end];
+			brr[end] = swap;
+		}
+		if (start >= end) {
+			swap = brr[end];
+			brr[end] = brr[head];
+			brr[head] = swap;
+			break;
+		}
+	}
+	quicksort1(head, end - 1, brr);
+	quicksort1(end + 1, tail, brr);
+}
+
+
 
 void atrain::point_update(void) {
 	for (int i = 0; i < t_cnt; i++) {
@@ -87,21 +117,41 @@ double count(int i) {
 
 void atrain::best2(void) {
 	point_update();
-	int result = 0;
-	double result2 = 0;
-	for (int i = 0; i < t_cnt; i++) {
-		if (result2 < arr[i].t_point) {
-			result2 = arr[i].t_point;
-			result = i;
-		}
-	}
+
+	int* brr = (int*)calloc(t_cnt, sizeof(int));
+	for (int i = 0; i < t_cnt; i++) brr[i] = i;
+	quicksort2(0, t_cnt - 1, brr);
+
 	std::locale::global(std::locale("korean"));
 	std::cout << "가장 성과가 좋은 트레이너는!" << '\n';
 	std::locale::global(std::locale("ko_KR.UTF-8"));
-	std::cout << arr[result].t_name << ',' << result2 << '\n';
+	for (int i = 0; i < t_cnt; i++) printf("NO.%d : %s   point: %f\n", i + 1, arr[brr[t_cnt - 1 - i]].t_name, arr[brr[t_cnt - 1 - i]].t_point);
 	return;
 }
 
+void atrain::quicksort2(int head, int tail, int* brr) {
+	if (head >= tail) return;
+	int start = head + 1;
+	int end = tail;
+	int swap;
+	while (1) {
+		while (start <= end && arr[brr[head]].t_point > arr[brr[start]].t_point) start++;
+		while (start <= end && arr[brr[head]].t_point < arr[brr[end]].t_point) end--;
+		if (start < end) {
+			swap = brr[start];
+			brr[start] = brr[end];
+			brr[end] = swap;
+		}
+		if (start >= end) {
+			swap = brr[end];
+			brr[end] = brr[head];
+			brr[head] = swap;
+			break;
+		}
+	}
+	quicksort2(head, end - 1, brr);
+	quicksort2(end + 1, tail, brr);
+}
 void atrain::deb(void) {
 	for (int i = 0; i < t_cnt; i++) {
 		std::cout << arr[i].t_name << ',' << ' ' << arr[i].t_point << '\n';

@@ -3,11 +3,6 @@
 #include "pt_table.h"
 typedef std::pair<int, char*> enrollname;
 
-bool greater(enrollname& a, enrollname& b)
-{
-	if (a.first < b.first) return true;
-	else return false;
-}
 // PT받는 인원 중 최대, 최소 연령대를 출력해주는 함수
 void Q6(int num, member_info& table)
 {
@@ -55,29 +50,20 @@ void pt(member_info &table)
 {
 	int** pt_age = (int**)malloc(sizeof(int*) * 8);
 	for(int i = 0; i < 8; i++)
-	{
-		pt_age[i] = (int*)malloc(sizeof(int) * 2);
-	}
-
-	for (int i = 0; i < 8; i++)
-	{
-		memset(pt_age[i], 0, sizeof(int)*2);
-
-	}
-
+		pt_age[i] = (int*)calloc(2, sizeof(int) * 2);
 
 	time_t timer = time(NULL);
 	struct tm* t = localtime(&timer);
-	char age[5];
+	char age[3];
 	int age_year;
 	int age20s = 0;
 	for (int i = 0; i < table.cnt; i++) // 생년 문자열을 숫자로 변환해주는 함수
 	{
 		age[0] = table.list[i].birthday[0];
 		age[1] = table.list[i].birthday[1];
-		age[4] = '\0';
+		age[2] = '\0';
 		age_year = atoi(age);
-		if (age_year > 40) // 년도가 40보다 크면 1900을 더하고 아니면 2000을 더하여 태여난 년도를 구한다.
+		if (age_year > t->tm_year - 80) // 회원이 80살 이상이라고 추정되면 2000을 더하고(없을 테니) 아니면 1900을 더하여 태여난 년도를 구한다.
 			age_year += 1900;
 		else age_year += 2000;
 

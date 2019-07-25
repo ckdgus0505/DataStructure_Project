@@ -8,6 +8,9 @@ void member_info::init(int max_size)
 	n = max_size;
 	cnt = 0;
 	list = (member*)calloc(n, sizeof(member));
+
+
+
 }
 // 로드하는 함수
 void member_info::load()
@@ -102,7 +105,7 @@ void member_info::load()
 	in.close();
 }
 
-void Q11(member_info table, member* arr) {
+void Q11(member_info &table, member* arr) {
 	int i, j = 0;
 
 	std::locale::global(std::locale("korean"));
@@ -122,7 +125,7 @@ void Q11(member_info table, member* arr) {
 	}
 
 	for (i = 0; i < j; i++) { //저장된 회원정보 출력
-		printf("%d %s %s %s\n", arr[i].ID, arr[i].name, arr[i].pt_enroll, arr[i].locker);
+		printf("%d %s PT: %s Locker: %s\n", arr[i].ID, arr[i].name, arr[i].pt_enroll, arr[i].locker);
 	}
 
 }

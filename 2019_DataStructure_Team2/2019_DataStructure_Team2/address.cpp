@@ -4,7 +4,7 @@
 #include "member.h"
 #pragma warning(disable : 4996)
 
-void most_addr(member_info table)
+void most_addr(member_info& table)
 {
 	address address;
 	address.init(1000);
